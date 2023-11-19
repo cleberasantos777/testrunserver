@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 public class RunFromServerService {
 
     public void printMessageOnScreen(){
-        System.out.println("God is good");
+        System.out.println("God is good 2");
     }
 }
