@@ -1,0 +1,54 @@
+General configuration notes.
+
+#Configuration linux (Ubuntu)
+
+    #Step-by-step server configuration (after virtual machine(Virtual Box) installation):
+
+        1 - Configure network on (Virtual box)
+                Select VM -> Machine -> Settings -> Network -> Adapter 1.
+                    Attached to: NAT
+                    Advanced -> Port Forwarding
+                        Name: Any
+                        Protocol: TCP
+                        Host IP: 127.0.0.2(Example)
+                        Host Port: 2222
+                        Guest IP: Your virtual machine network interface thing like (10.0.2.15)
+                            can see through (ip addr) command
+                        Guest Port: 8080, 22 ou other port that you was open in your virtual
+                            machine.
+
+        2 - Install Java - Find in internet how do install
+        3 - Install Jenkins - Find in internet how do install
+        4 - Open necessary ports
+            #Step-by-step to open a port (if wants open another port, just change the number)
+                1 - firewall-cmd --add-port=8080/tcp
+                2 - ufw allow 8080/tcp
+
+    #Commands:
+        Linux version: lsb_release -a
+        Update/Upgrade Ubuntu: sudo apt-get update/upgrade
+        Open Ports: firewall-cmd --add-port=8080/tcp (can replace 8080 to your port)
+        Edit files: nano (file address)
+
+        #Configure ufw
+            sudo apt-get install -y ufw
+            sudo ufw default deny incoming
+            sudo ufw default allow outgoing
+            sudo ufw allow 22
+            sudo ufw enable
+            sudo apt-get install -y lighttpd
+
+        #Configure ufw
+            apt install nmap
+            sudo nmap localhost
+            sudo nmap -p 80 localhost
+
+        #Configure Jenkins
+            service jenkins start/stop/restart
+            nano /etc/default/jenkins
+
+        #Which are running in a particular port
+            netstat -ano | grep [Port Number]
+
+        Firewalld disabled
+            sudo systemctl disable firewalld
